@@ -6,31 +6,31 @@ from arduinoDataHandler import arduinoData, get_arduino_angular_data, get_arduin
 
 # Simulation parameters
 GRID_SIZE = 100
-PARTICLE_COUNT = 300
+PARTICLE_COUNT = 250
 TIME_STEP = 0.1
-GRAVITY = np.array([0, 9.81, 0]) * TIME_STEP
+GRAVITY = np.array([0, 15, 0]) * TIME_STEP
 WINDOW_SIZE = 300
-PARTICLE_RADIUS = 2
+PARTICLE_RADIUS = 2.5
 MAX_DEPTH = 75
 
 # Updated physics parameters
 VELOCITY_DAMPING = {
-    'x': 0.55,  # Less damping for x-axis
-    'y': 0.55,  # Less damping for y-axis
-    'z': 0.70   # More damping for z-axis due to larger forces
+    'x': 0.7,  # Less damping for x-axis
+    'y': 1,  # Less damping for y-axis
+    'z': 0.60   # More damping for z-axis due to larger forces
 }
-MINIMUM_VELOCITY = 0.01
+MINIMUM_VELOCITY = 0.15
 ANGULAR_FORCE_THRESHOLD = {
-    'x': 0,   # Threshold for x-axis (~5% of max observed)
-    'y': 0,   # Threshold for y-axis (~10% of max observed)
-    'z': 0   # Threshold for z-axis (~4% of max observed)
+    'x': 5,   # Threshold for x-axis (~5% of max observed)
+    'y': 10,   # Threshold for y-axis (~10% of max observed)
+    'z': 4   # Threshold for z-axis (~4% of max observed)
 }
 FORCE_SCALING = {
     'x': 2,  # Smaller scaling for x-axis
-    'y': 2,  # Smaller scaling for y-axis
+    'y': 2.3,  # Smaller scaling for y-axis
     'z': 1  # Much smaller scaling for z-axis due to large values
 }
-COLLISION_DAMPING = 0.1
+COLLISION_DAMPING = 0.06
 
 class ParticleSystem:
     def __init__(self):
@@ -237,7 +237,7 @@ def main():
         
         particle_system.update()
         render(particle_system)
-        clock.tick(60)
+        clock.tick(40)
     
     pygame.quit()
 
